@@ -53,7 +53,6 @@ gulp.task('clean',function(callback){
 	return cache.clearAll(callback)
 });
 gulp.task('clean:dist',function(callback){
-	console.log('123');
 	return del(['dist/**/*','!dist/img/**/*','!dist/img']);
 });
 gulp.task('watch',['browserSync','sass'],function(){
