@@ -46,7 +46,7 @@ gulp.task('images',function(){
 		.pipe(cache(imageMin({
 			interlaced:true
 		})))
-		.pipe(gulp.dest('dist/img'))
+		.pipe(gulp.dest('dist/images'))
 });
 gulp.task('clean',function(callback){
 	del('dist');
