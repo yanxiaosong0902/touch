@@ -1,9 +1,18 @@
-body {
-  padding: 0;
-  margin: 0;
-  background: red;
-  height: 100vh; }
-  body div {
-    background: green;
-    width: 71.42857%;
-    font-size: 20px; }
+#test {
+  display: flex;
+  padding: 30px 0;
+  justify-content: center;
+  flex-wrap: wrap; }
+  #test .touch-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    #test .touch-box .target {
+      width: 60vw;
+      height: 80vh;
+      background: skyblue; }
+  #test .info {
+    text-align: center;
+    color: #333;
+    padding: 20px; }
