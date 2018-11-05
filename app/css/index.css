@@ -9,9 +9,9 @@
     align-items: center;
     justify-content: center; }
     #test .touch-box .target {
-      width: 60vw;
-      height: 80vh;
-      background: skyblue; }
+      width: 100vw; }
+      #test .touch-box .target img {
+        width: 100%; }
   #test .info {
     text-align: center;
     color: #333;

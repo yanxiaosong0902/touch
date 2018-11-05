@@ -9,9 +9,10 @@
 		align-items: center;
 		justify-content: center;
 		.target{
-			width: 60vw;
-			height: 80vh;
-			background: skyblue;
+			width:100vw;
+			img{
+				width:100%;
+			}
 		}
 	}
 	.info{
