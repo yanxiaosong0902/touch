@@ -1,17 +1,28 @@
 #test {
   display: flex;
-  padding: 30px 0;
   justify-content: center;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100vh;
+  width: 100vw; }
   #test .touch-box {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px; }
     #test .touch-box .target {
-      width: 100vw; }
+      width: 100vw;
+      box-shadow: 0px 0px 5px 5px #b1b1b1;
+      border-radius: 5px;
+      max-height: 90vh;
+      max-width: 100vw; }
       #test .touch-box .target img {
-        width: 100%; }
+        width: 100%;
+        border-radius: 5px;
+        max-height: 90vh;
+        max-width: 100vw; }
   #test .info {
     text-align: center;
     color: #333;

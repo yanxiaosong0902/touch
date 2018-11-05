@@ -1,8 +1,9 @@
-var info = document.querySelector('.info')
 var t_one_x, t_one_y, t_two_x, t_two_y
-var width, height, type, target
+var width, height, type, target, target_img
+var trouch_start = false
 target = document.querySelector('.target')
-target.querySelector('img').src = '../tu/640960.jpg'
+target_img = target.querySelector('.target_img')
+target_img.src = '../tu/640960.jpg'
 
 function adjustDirection(type, touch) {
   var t_one, t_two
@@ -44,13 +45,14 @@ function adjustDirection(type, touch) {
 }
 document.addEventListener('touchstart', function(e) {
   var touch = e.targetTouches
-  if(!e.target.parentNode.classList.contains('target')) {
-    return
-  }
+  // if(!e.target.classList.contains('target_img')) {
+  //   return
+  // }
   if(e.targetTouches.length == 2) {
-    if(Math.abs(t_one_x - t_two_x) < 50) {
+    trouch_start = true
+    if(Math.abs(touch[0].clientX - touch[1].clientX) < 50) {
       type = 'vertical'
-    } else if(Math.abs(t_one_y - t_two_y) < 50) {
+    } else if(Math.abs(touch[0].clientY - touch[1].clientY) < 50) {
       type = 'horizital'
     } else {
       type = 'all'
@@ -69,6 +71,7 @@ document.addEventListener('touchstart', function(e) {
 document.addEventListener('touchmove', function(e) {
   if(e.targetTouches.length == 2) {
     e.preventDefault()
+    target.style.transition = '0s'
     var touch = e.targetTouches
     var t_one, t_two
     var t = adjustDirection(type, touch)
@@ -78,21 +81,24 @@ document.addEventListener('touchmove', function(e) {
     var y_one = t_one.clientY - t_one_y
     var x_two = t_two.clientX - t_two_x
     var y_two = t_two.clientY - t_two_y
-    info.innerHTML = t_one.clientX
     switch (type) {
       case 'vertical':
         if(t_one.clientY > t_two.clientY) {
           return
         }
         target.style.height = height - y_one + y_two + 'px'
+        target_img.style.width = target.style.width
+        target_img.style.height = height - y_one + y_two + 'px'
         target.style.webkitTransform = `translateY(${y_one}px)`
         break
       case 'horizital':
         if(t_one.clientX > t_two.clientX) {
           return
         }
-        info.innerHTML = x_one + ',' + x_two + ',' + target.style.width
+        //info.innerHTML = x_one + ',' + x_two + ',' + target.style.width
         target.style.width = width - x_one + x_two + 'px'
+        target_img.style.height = target.style.height
+        target_img.style.width = target.style.width
         //target.style.webkitTransform = `translateX(${x_one}px)`
         break
       case 'all':
@@ -101,6 +107,8 @@ document.addEventListener('touchmove', function(e) {
         }
         target.style.width = width + x_one - x_two + 'px'
         target.style.height = height - y_one + y_two + 'px'
+        target_img.style.width = target.style.width
+        target_img.style.height = target.style.height
         //target.style.webkitTransform = `translate3d(${x_one}px,${y_one}px,0)`
         target.style.webkitTransform = `translateY(${y_one}px)`
         break
@@ -112,8 +120,8 @@ document.addEventListener('touchmove', function(e) {
   passive: false
 })
 //1.5,1 ,2 1.428,1.2,1.6,0.67,2.33,1.78,6.67,3.2,0.75
-document.addEventListener('touchend', function(e) {
-  if(e.targetTouches.length == 2 && e.target.parentNode.classList.contains('target')) {
+document.addEventListener('touchend', function() {
+  if(trouch_start) {
     var this_width = target.offsetWidth
     var this_height = target.offsetHeight
     var rate = this_width / this_height
@@ -147,7 +155,13 @@ document.addEventListener('touchend', function(e) {
     if(range === '500500' || range === '800120') {
       imgurl = `../tu/${range}.png`
     }
-    target.querySelector('img').src = imgurl
-    target.transiton
+    target_img.src = imgurl
+    trouch_start = false
+    target.style.width = '100vw'
+    target.style.height = 'auto'
+    target_img.style.width = '100%'
+    target_img.style.height = 'auto'
+    target.style.transition = 'all 0.5s'
+    target.style.webkitTransform = 'translate3d(0,0,0)'
   }
 })
