@@ -110,6 +110,10 @@ document.addEventListener('touchmove', function (e) {
 }, {
   passive: false
 })
-document.addEventListener('touchmove', function () {
-
+document.addEventListener('touchend', function (e) {
+  if (e.targetTouches.length == 2 && e.target.classList.contains('target')) {
+    var this_width = target.offsetWidth
+    var this_height = target.offsetHeight
+    var rate = this_width / this_height
+  }
 })
