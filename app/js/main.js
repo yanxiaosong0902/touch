@@ -95,9 +95,8 @@ document.addEventListener('touchmove', function(e) {
         if(t_one.clientX > t_two.clientX) {
           return
         }
-        //info.innerHTML = x_one + ',' + x_two + ',' + target.style.width
         target.style.width = width - x_one + x_two + 'px'
-        target_img.style.height = target.style.height
+        target_img.style.height = height + 'px'
         target_img.style.width = target.style.width
         //target.style.webkitTransform = `translateX(${x_one}px)`
         break

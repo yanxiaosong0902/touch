@@ -27,6 +27,9 @@
 		}
 	}
 	.info{
+		position:fixed;
+		bottom:10px;
+		z-index:999;
 		text-align: center;
 		color:#333;
 		padding:20px;
